@@ -1,7 +1,7 @@
 FROM php:7.0
 
 RUN apt-get update -yqq
-RUN apt-get install openssh-client git unzip ansible zlib1g-dev -yqq
+RUN apt-get install openssh-client git unzip ansible zlib1g-dev wget -yqq
 RUN ansible-galaxy install carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback
 RUN curl -Lo /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar && chmod +x /usr/local/bin/phpunit
 RUN docker-php-ext-install pdo_mysql

@@ -6,6 +6,7 @@ RUN ansible-galaxy install carlosbuenosvinos.ansistrano-deploy,1.12.0 carlosbuen
 RUN curl -Lo /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar && chmod +x /usr/local/bin/phpunit
 RUN docker-php-ext-install pdo pdo_mysql gd zip simplexml
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
-RUN curl -Lo git-lfs.tar.gz https://github.com/git-lfs/git-lfs/releases/download/v1.5.5/git-lfs-linux-amd64-1.5.5.tar.gz \
-    && tar xzf git-lfs.tar.gz && cd git-lfs-1.5.5 && ./install.sh && cd .. && rm -rf git-lfs*
+RUN curl -Lo git-lfs.tar.gz https://github.com/git-lfs/git-lfs/releases/download/v2.0.0/git-lfs-linux-amd64-2.0.0.tar.gz \
+    && tar xzf git-lfs.tar.gz && cd git-lfs-2.0.0 && ./install.sh && cd .. && rm -rf git-lfs*
+RUN curl -Lo /usr/local/bin/php-cs-fixer http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar && chmod +x /usr/local/bin/php-cs-fixer
 

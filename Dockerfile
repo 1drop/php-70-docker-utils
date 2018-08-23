@@ -3,7 +3,7 @@ FROM php:7.0
 ENV GIT_LFS_VERSION=2.3.4
 
 RUN apt-get update -yqq
-RUN apt-get install openssh-client git unzip ansible zlib1g-dev wget libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libcurl4-gnutls-dev libxml2-dev -yqq
+RUN apt-get install openssh-client git unzip zip ansible zlib1g-dev wget libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libcurl4-gnutls-dev libxml2-dev -yqq
 RUN ansible-galaxy install carlosbuenosvinos.ansistrano-deploy,1.12.0 carlosbuenosvinos.ansistrano-rollback,1.5.0
 RUN docker-php-ext-install pdo pdo_mysql gd zip simplexml
 # Add git lfs

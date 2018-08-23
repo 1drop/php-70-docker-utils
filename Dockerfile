@@ -1,16 +1,15 @@
-FROM php:7.0
+FROM webdevops/php:7.0
 
 ENV GIT_LFS_VERSION=2.3.4
 
 RUN apt-get update -yqq
-RUN apt-get install openssh-client git unzip zip ansible zlib1g-dev wget libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libcurl4-gnutls-dev libxml2-dev -yqq
-RUN ansible-galaxy install carlosbuenosvinos.ansistrano-deploy,1.12.0 carlosbuenosvinos.ansistrano-rollback,1.5.0
-RUN docker-php-ext-install pdo pdo_mysql gd zip simplexml
+RUN apt-install ansible
+RUN ansible-galaxy install ansistrano.deploy,1.12.0 ansistrano.rollback,1.5.0
 # Add git lfs
 RUN curl -Lo git-lfs.tar.gz https://github.com/git-lfs/git-lfs/releases/download/v${GIT_LFS_VERSION}/git-lfs-linux-amd64-${GIT_LFS_VERSION}.tar.gz \
     && tar xzf git-lfs.tar.gz && cd git-lfs-${GIT_LFS_VERSION} && ./install.sh && cd .. && rm -rf git-lfs*
-# Add composer
-RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
+# Add composer globals to PATH
+RUN echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
 # Add xml-linter
 RUN composer global require mickaelandrieu/xml-linter
 # Add phpunit
